@@ -1,4 +1,6 @@
 import { Quote } from "lucide-react";
+import { YouTubeEmbed } from "@/components/ui/YouTubeEmbed";
+import Image from "next/image";
 
 const testimonials = [
   {
@@ -7,6 +9,7 @@ const testimonials = [
     company: "Marketing Agency",
     name: "LuminaWeb3",
     role: "COO",
+    image: "/testimonials/luminaweb3.jpg",
   },
   {
     quote:
@@ -14,6 +17,7 @@ const testimonials = [
     company: "Sales Info-Product",
     name: "ClosePro.co",
     role: "Founder",
+    image: "/testimonials/closepro.jpg",
   },
   {
     quote:
@@ -21,6 +25,7 @@ const testimonials = [
     company: "$3.7M MRR E-Commerce Brand",
     name: "",
     role: "Founder",
+    image: "/testimonials/ecommerce.jpg",
   },
   {
     quote:
@@ -28,6 +33,7 @@ const testimonials = [
     company: "Real Estate Agency",
     name: "",
     role: "Operations Director",
+    image: "/testimonials/realestate.jpg",
   },
 ];
 
@@ -47,11 +53,19 @@ export function Testimonials() {
           >
             Recent Client Success Stories
           </h2>
-          <p className="text-sm sm:text-base text-gray-400 max-w-2xl mx-auto px-4">
-            See how OpenClaw Agency has helped businesses replace manual work
-            with AI agents that deliver real results.
-          </p>
         </header>
+
+        {/* Video Testimonial - First */}
+        <div className="max-w-3xl mx-auto mb-12 sm:mb-16">
+          <div className="relative">
+            <div className="absolute -inset-2 sm:-inset-4 bg-gradient-to-r from-[#ff3b30]/10 to-[#ff3b30]/10 rounded-2xl sm:rounded-3xl blur-xl" aria-hidden="true" />
+            <YouTubeEmbed
+              videoId="C67xIe0K46M"
+              title="OpenClaw Agency Client Success Stories"
+              className="relative z-10 border border-white/10"
+            />
+          </div>
+        </div>
 
         {/* Testimonials grid - single column on mobile */}
         <div
@@ -73,11 +87,13 @@ function TestimonialCard({
   company,
   name,
   role,
+  image,
 }: {
   quote: string;
   company: string;
   name: string;
   role: string;
+  image: string;
 }) {
   return (
     <article
@@ -94,16 +110,28 @@ function TestimonialCard({
         "{quote}"
       </blockquote>
 
-      {/* Attribution */}
+      {/* Attribution with image */}
       <footer className="flex items-center gap-3 sm:gap-4">
-        {/* Avatar */}
-        <div
-          className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-br from-[#ff3b30] to-[#ff6b5b] flex items-center justify-center flex-shrink-0"
-          aria-hidden="true"
-        >
-          <span className="text-white font-bold text-xs sm:text-sm">
-            {name ? name[0] : company[0]}
-          </span>
+        {/* Photo/Avatar */}
+        <div className="relative w-12 h-12 sm:w-14 sm:h-14 rounded-full overflow-hidden bg-gradient-to-br from-[#ff3b30] to-[#ff6b5b] flex-shrink-0">
+          {image ? (
+            <Image
+              src={image}
+              alt={`${name || company} testimonial`}
+              fill
+              className="object-cover"
+              onError={(e) => {
+                // Fallback to initial if image fails
+                e.currentTarget.style.display = 'none';
+              }}
+            />
+          ) : null}
+          {/* Fallback initial */}
+          <div className="absolute inset-0 flex items-center justify-center">
+            <span className="text-white font-bold text-sm sm:text-base">
+              {name ? name[0] : company[0]}
+            </span>
+          </div>
         </div>
         <div className="min-w-0">
           <cite className="block font-semibold text-white not-italic text-sm sm:text-base truncate">

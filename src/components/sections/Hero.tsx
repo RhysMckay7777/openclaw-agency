@@ -1,9 +1,10 @@
 import { Button } from "@/components/ui/Button";
+import { YouTubeEmbed } from "@/components/ui/YouTubeEmbed";
 
 export function Hero() {
   return (
     <section
-      className="relative min-h-[90vh] sm:min-h-screen flex items-center justify-center pt-20 pb-16 sm:pt-24 overflow-hidden"
+      className="relative min-h-screen flex flex-col items-center justify-center pt-20 pb-8 sm:pt-24 sm:pb-16 overflow-hidden"
       aria-labelledby="hero-heading"
     >
       {/* Background gradient */}
@@ -19,17 +20,6 @@ export function Hero() {
       />
 
       <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        {/* Eyebrow */}
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-[#ff3b30]/10 border border-[#ff3b30]/20 mb-6 sm:mb-8">
-          <span
-            className="w-2 h-2 rounded-full bg-[#ff3b30] animate-pulse"
-            aria-hidden="true"
-          />
-          <span className="text-xs sm:text-sm font-medium text-[#ff3b30]">
-            OpenClaw Agency
-          </span>
-        </div>
-
         {/* H1 - Primary headline matching live site exactly */}
         <h1
           id="hero-heading"
@@ -46,9 +36,21 @@ export function Hero() {
           <span className="text-[#ff3b30] font-medium">Saving Costs</span>
         </p>
 
-        {/* CTA - single prominent button for mobile */}
+        {/* YouTube VSL - Hero Video */}
+        <div className="max-w-3xl mx-auto mb-8 sm:mb-10 px-4">
+          <div className="relative">
+            <div className="absolute -inset-2 sm:-inset-4 bg-gradient-to-r from-[#ff3b30]/20 to-[#ff3b30]/20 rounded-2xl sm:rounded-3xl blur-xl" aria-hidden="true" />
+            <YouTubeEmbed
+              videoId="JpIKD1OPQvQ"
+              title="OpenClaw Agency - AI Agents That Replace Your Employees"
+              className="relative z-10 border border-white/10 shadow-2xl"
+            />
+          </div>
+        </div>
+
+        {/* CTA Buttons */}
         <div
-          className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-8 sm:mb-10 px-4"
+          className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 px-4"
           role="group"
           aria-label="Call to action buttons"
         >
@@ -70,16 +72,11 @@ export function Hero() {
             How It Works
           </Button>
         </div>
-
-        {/* Trust Badge */}
-        <p className="text-xs sm:text-sm text-gray-500 px-4">
-          Trusted by AI-first teams worldwide
-        </p>
       </div>
 
       {/* Bottom fade */}
       <div
-        className="absolute bottom-0 left-0 right-0 h-24 sm:h-32 bg-gradient-to-t from-[#0a0a0a] to-transparent"
+        className="absolute bottom-0 left-0 right-0 h-16 sm:h-24 bg-gradient-to-t from-[#0a0a0a] to-transparent"
         aria-hidden="true"
       />
     </section>
