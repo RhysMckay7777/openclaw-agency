@@ -81,6 +81,7 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
         <OrganizationSchema />
+        <ServiceSchema />
         <FAQSchema />
       </head>
       <body className={`${inter.variable} font-sans antialiased`}>
@@ -121,6 +122,54 @@ function OrganizationSchema() {
       "OpenClaw",
       "Data Workflows",
     ],
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+    />
+  );
+}
+
+function ServiceSchema() {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    serviceType: "AI Automation Development",
+    provider: {
+      "@type": "Organization",
+      name: "OpenClaw Agency",
+      url: "https://www.openclawagency.ai",
+    },
+    name: "AI Agent Development & Automation",
+    description:
+      "Custom AI agents that replace manual work, automate business processes, and scale operations 24/7.",
+    areaServed: "Worldwide",
+    hasOfferCatalog: {
+      "@type": "OfferCatalog",
+      name: "AI Automation Services",
+      itemListElement: [
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Automation Development",
+            description:
+              "Custom AI agents tailored to your workflows, production-ready in days.",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "AI Consultancy",
+            description:
+              "Hands-on training and strategy for implementing AI in your business.",
+          },
+        },
+      ],
+    },
   };
 
   return (
