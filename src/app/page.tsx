@@ -15,11 +15,11 @@ export default function Home() {
       <main id="main-content" role="main">
         <Hero />
         <PartnerStrip />
+        <FinalCTA />
         <TwoWaysWeHelp />
         <Testimonials />
         <Process />
         <FAQ />
-        <FinalCTA />
       </main>
       <Footer />
     </>
