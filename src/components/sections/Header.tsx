@@ -16,10 +16,9 @@ export function Header() {
             className="flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-[#ff3b30] focus:ring-offset-2 focus:ring-offset-black rounded-lg"
             aria-label="OpenClaw Agency - Home"
           >
-            {/* TODO: Replace with actual logo SVG */}
-            <div className="relative w-8 h-8">
+            <div className="relative w-10 h-10">
               <Image
-                src="/openclaw-logo.svg"
+                src="/openclaw-logo.png"
                 alt="OpenClaw Agency logo"
                 fill
                 className="object-contain"
@@ -45,7 +44,7 @@ export function Header() {
 
           {/* CTA */}
           <Button
-            href="https://calendly.com/openclawagency"
+            href="#booking"
             size="sm"
             aria-label="Get Started with OpenClaw Agency"
           >

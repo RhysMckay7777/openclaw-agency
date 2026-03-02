@@ -1,4 +1,5 @@
 import { Quote } from "lucide-react";
+import { YouTubeEmbed } from "@/components/ui/YouTubeEmbed";
 
 const testimonials = [
   {
@@ -59,13 +60,28 @@ export function Testimonials() {
 
         {/* Testimonials grid */}
         <div
-          className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto"
+          className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto mb-16"
           role="list"
           aria-label="Client testimonials"
         >
           {testimonials.map((testimonial, index) => (
             <TestimonialCard key={index} {...testimonial} />
           ))}
+        </div>
+
+        {/* Video testimonial */}
+        <div className="max-w-3xl mx-auto">
+          <h3 className="text-xl font-semibold text-white text-center mb-6">
+            Watch How Our Clients Transform Their Business
+          </h3>
+          <div className="relative">
+            <div className="absolute -inset-4 bg-gradient-to-r from-[#ff3b30]/10 to-[#ff3b30]/10 rounded-3xl blur-xl" aria-hidden="true" />
+            <YouTubeEmbed
+              videoId="C67xIe0K46M"
+              title="OpenClaw Agency Client Results"
+              className="relative z-10 border border-white/10"
+            />
+          </div>
         </div>
       </div>
     </section>
