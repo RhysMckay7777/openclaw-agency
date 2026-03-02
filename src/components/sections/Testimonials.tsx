@@ -1,6 +1,9 @@
+"use client";
+
 import { Quote } from "lucide-react";
 import { YouTubeEmbed } from "@/components/ui/YouTubeEmbed";
 import Image from "next/image";
+import { useState } from "react";
 
 const testimonials = [
   {
@@ -95,6 +98,8 @@ function TestimonialCard({
   role: string;
   image: string;
 }) {
+  const [imageError, setImageError] = useState(false);
+  
   return (
     <article
       className="relative bg-[#111111] border border-white/10 rounded-xl sm:rounded-2xl p-5 sm:p-6 md:p-8"
@@ -107,31 +112,28 @@ function TestimonialCard({
 
       {/* Quote text */}
       <blockquote className="text-gray-300 text-sm sm:text-base md:text-lg leading-relaxed mb-4 sm:mb-6">
-        "{quote}"
+        &ldquo;{quote}&rdquo;
       </blockquote>
 
       {/* Attribution with image */}
       <footer className="flex items-center gap-3 sm:gap-4">
         {/* Photo/Avatar */}
         <div className="relative w-12 h-12 sm:w-14 sm:h-14 rounded-full overflow-hidden bg-gradient-to-br from-[#ff3b30] to-[#ff6b5b] flex-shrink-0">
-          {image ? (
+          {image && !imageError ? (
             <Image
               src={image}
               alt={`${name || company} testimonial`}
               fill
               className="object-cover"
-              onError={(e) => {
-                // Fallback to initial if image fails
-                e.currentTarget.style.display = 'none';
-              }}
+              onError={() => setImageError(true)}
             />
-          ) : null}
-          {/* Fallback initial */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <span className="text-white font-bold text-sm sm:text-base">
-              {name ? name[0] : company[0]}
-            </span>
-          </div>
+          ) : (
+            <div className="absolute inset-0 flex items-center justify-center">
+              <span className="text-white font-bold text-sm sm:text-base">
+                {name ? name[0] : company[0]}
+              </span>
+            </div>
+          )}
         </div>
         <div className="min-w-0">
           <cite className="block font-semibold text-white not-italic text-sm sm:text-base truncate">
