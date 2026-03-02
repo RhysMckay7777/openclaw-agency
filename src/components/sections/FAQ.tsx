@@ -7,7 +7,7 @@ const faqs = [
   {
     question: "Do I need to know how to use AI?",
     answer:
-      "No, you don't need any AI expertise. OpenClaw Agency handles everything from design to deployment. We build custom AI agents tailored to your business needs and provide full training on how to work with them.",
+      "No, you don't need any AI expertise. We handle everything from design to deployment. We build custom AI agents tailored to your business needs and provide full training on how to work with them.",
   },
   {
     question: "Will the AI perform worse than my employees?",
@@ -37,25 +37,25 @@ export function FAQ() {
   return (
     <section
       id="faq"
-      className="py-24 bg-[#0d0d0d]"
+      className="py-16 sm:py-24 bg-[#0d0d0d]"
       aria-labelledby="faq-heading"
     >
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section header */}
-        <header className="text-center mb-16">
+        <header className="text-center mb-10 sm:mb-16">
           <h2
             id="faq-heading"
-            className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3 sm:mb-4 px-2"
           >
             We've Got the Answers You're Looking For
           </h2>
-          <p className="text-gray-400">
-            Quick answers to your AI automation questions from OpenClaw Agency.
+          <p className="text-sm sm:text-base text-gray-400 px-4">
+            Quick answers to your AI automation questions.
           </p>
         </header>
 
         {/* FAQ items */}
-        <div className="space-y-4" role="region" aria-label="Frequently Asked Questions">
+        <div className="space-y-3 sm:space-y-4" role="region" aria-label="Frequently Asked Questions">
           {faqs.map((faq, index) => (
             <FAQItem
               key={index}
@@ -86,18 +86,18 @@ function FAQItem({
   id: string;
 }) {
   return (
-    <div className="border border-white/10 rounded-xl overflow-hidden">
+    <div className="border border-white/10 rounded-lg sm:rounded-xl overflow-hidden">
       <h3>
         <button
           onClick={onToggle}
-          className="w-full flex items-center justify-between p-5 text-left bg-[#111111] hover:bg-[#1a1a1a] transition-colors focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[#ff3b30]"
+          className="w-full flex items-center justify-between p-4 sm:p-5 text-left bg-[#111111] hover:bg-[#1a1a1a] transition-colors focus:outline-none focus:ring-2 focus:ring-inset focus:ring-[#ff3b30] min-h-[56px]"
           aria-expanded={isOpen}
           aria-controls={`${id}-content`}
           id={`${id}-button`}
         >
-          <span className="font-medium text-white pr-4">{question}</span>
+          <span className="font-medium text-white pr-3 sm:pr-4 text-sm sm:text-base">{question}</span>
           <ChevronDown
-            className={`w-5 h-5 text-[#ff3b30] flex-shrink-0 transition-transform duration-200 ${
+            className={`w-4 h-4 sm:w-5 sm:h-5 text-[#ff3b30] flex-shrink-0 transition-transform duration-200 ${
               isOpen ? "rotate-180" : ""
             }`}
             aria-hidden="true"
@@ -113,8 +113,8 @@ function FAQItem({
         }`}
         hidden={!isOpen}
       >
-        <div className="p-5 pt-0 bg-[#111111]">
-          <p className="text-gray-400 leading-relaxed">{answer}</p>
+        <div className="p-4 sm:p-5 pt-0 bg-[#111111]">
+          <p className="text-gray-400 leading-relaxed text-sm sm:text-base">{answer}</p>
         </div>
       </div>
     </div>

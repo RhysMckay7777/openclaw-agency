@@ -1,5 +1,4 @@
 import { Quote } from "lucide-react";
-import { YouTubeEmbed } from "@/components/ui/YouTubeEmbed";
 
 const testimonials = [
   {
@@ -8,7 +7,6 @@ const testimonials = [
     company: "Marketing Agency",
     name: "LuminaWeb3",
     role: "COO",
-    highlight: "$153k",
   },
   {
     quote:
@@ -16,7 +14,6 @@ const testimonials = [
     company: "Sales Info-Product",
     name: "ClosePro.co",
     role: "Founder",
-    highlight: "$78,000",
   },
   {
     quote:
@@ -24,7 +21,6 @@ const testimonials = [
     company: "$3.7M MRR E-Commerce Brand",
     name: "",
     role: "Founder",
-    highlight: "$3.7M MRR",
   },
   {
     quote:
@@ -32,7 +28,6 @@ const testimonials = [
     company: "Real Estate Agency",
     name: "",
     role: "Operations Director",
-    highlight: "Best Quarter",
   },
 ];
 
@@ -40,48 +35,33 @@ export function Testimonials() {
   return (
     <section
       id="testimonials"
-      className="py-24 bg-[#0d0d0d]"
+      className="py-16 sm:py-24 bg-[#0d0d0d]"
       aria-labelledby="testimonials-heading"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section header */}
-        <header className="text-center mb-16">
+        <header className="text-center mb-10 sm:mb-16">
           <h2
             id="testimonials-heading"
-            className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3 sm:mb-4 px-2"
           >
             Recent Client Success Stories
           </h2>
-          <p className="text-gray-400 max-w-2xl mx-auto">
+          <p className="text-sm sm:text-base text-gray-400 max-w-2xl mx-auto px-4">
             See how OpenClaw Agency has helped businesses replace manual work
             with AI agents that deliver real results.
           </p>
         </header>
 
-        {/* Testimonials grid */}
+        {/* Testimonials grid - single column on mobile */}
         <div
-          className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto mb-16"
+          className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 max-w-5xl mx-auto"
           role="list"
           aria-label="Client testimonials"
         >
           {testimonials.map((testimonial, index) => (
             <TestimonialCard key={index} {...testimonial} />
           ))}
-        </div>
-
-        {/* Video testimonial */}
-        <div className="max-w-3xl mx-auto">
-          <h3 className="text-xl font-semibold text-white text-center mb-6">
-            Watch How Our Clients Transform Their Business
-          </h3>
-          <div className="relative">
-            <div className="absolute -inset-4 bg-gradient-to-r from-[#ff3b30]/10 to-[#ff3b30]/10 rounded-3xl blur-xl" aria-hidden="true" />
-            <YouTubeEmbed
-              videoId="C67xIe0K46M"
-              title="OpenClaw Agency Client Results"
-              className="relative z-10 border border-white/10"
-            />
-          </div>
         </div>
       </div>
     </section>
@@ -93,54 +73,44 @@ function TestimonialCard({
   company,
   name,
   role,
-  highlight,
 }: {
   quote: string;
   company: string;
   name: string;
   role: string;
-  highlight: string;
 }) {
   return (
     <article
-      className="relative bg-[#111111] border border-white/10 rounded-2xl p-6 sm:p-8"
+      className="relative bg-[#111111] border border-white/10 rounded-xl sm:rounded-2xl p-5 sm:p-6 md:p-8"
       role="listitem"
     >
-      {/* Highlight badge */}
-      <div
-        className="absolute -top-3 right-6 px-3 py-1 bg-[#ff3b30] rounded-full"
-        aria-label={`Key result: ${highlight}`}
-      >
-        <span className="text-xs font-bold text-white">{highlight}</span>
-      </div>
-
       {/* Quote icon */}
-      <div className="mb-4" aria-hidden="true">
-        <Quote className="w-8 h-8 text-[#ff3b30]/30" />
+      <div className="mb-3 sm:mb-4" aria-hidden="true">
+        <Quote className="w-6 h-6 sm:w-8 sm:h-8 text-[#ff3b30]/30" />
       </div>
 
       {/* Quote text */}
-      <blockquote className="text-gray-300 text-lg leading-relaxed mb-6">
+      <blockquote className="text-gray-300 text-sm sm:text-base md:text-lg leading-relaxed mb-4 sm:mb-6">
         "{quote}"
       </blockquote>
 
       {/* Attribution */}
-      <footer className="flex items-center gap-4">
-        {/* Avatar placeholder */}
+      <footer className="flex items-center gap-3 sm:gap-4">
+        {/* Avatar */}
         <div
-          className="w-12 h-12 rounded-full bg-gradient-to-br from-[#ff3b30] to-[#ff6b5b] flex items-center justify-center"
+          className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-br from-[#ff3b30] to-[#ff6b5b] flex items-center justify-center flex-shrink-0"
           aria-hidden="true"
         >
-          <span className="text-white font-bold text-sm">
+          <span className="text-white font-bold text-xs sm:text-sm">
             {name ? name[0] : company[0]}
           </span>
         </div>
-        <div>
-          <cite className="font-semibold text-white not-italic">
-            {name || "Anonymous"}
+        <div className="min-w-0">
+          <cite className="block font-semibold text-white not-italic text-sm sm:text-base truncate">
+            {company}
           </cite>
-          <div className="text-sm text-gray-500">
-            {role} • {company}
+          <div className="text-xs sm:text-sm text-gray-500 truncate">
+            {name && `${name} • `}{role}
           </div>
         </div>
       </footer>
