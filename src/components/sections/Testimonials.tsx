@@ -37,21 +37,32 @@ const testimonials = [
 
 export function Testimonials() {
   return (
-    <section id="testimonials" className="py-24 bg-[#0d0d0d]">
+    <section
+      id="testimonials"
+      className="py-24 bg-[#0d0d0d]"
+      aria-labelledby="testimonials-heading"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section header */}
-        <div className="text-center mb-16">
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">
+        <header className="text-center mb-16">
+          <h2
+            id="testimonials-heading"
+            className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4"
+          >
             Recent Client Success Stories
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
             See how OpenClaw Agency has helped businesses replace manual work
             with AI agents that deliver real results.
           </p>
-        </div>
+        </header>
 
         {/* Testimonials grid */}
-        <div className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto">
+        <div
+          className="grid md:grid-cols-2 gap-6 max-w-5xl mx-auto"
+          role="list"
+          aria-label="Client testimonials"
+        >
           {testimonials.map((testimonial, index) => (
             <TestimonialCard key={index} {...testimonial} />
           ))}
@@ -75,37 +86,48 @@ function TestimonialCard({
   highlight: string;
 }) {
   return (
-    <div className="relative bg-[#111111] border border-white/10 rounded-2xl p-6 sm:p-8">
+    <article
+      className="relative bg-[#111111] border border-white/10 rounded-2xl p-6 sm:p-8"
+      role="listitem"
+    >
       {/* Highlight badge */}
-      <div className="absolute -top-3 right-6 px-3 py-1 bg-[#ff3b30] rounded-full">
+      <div
+        className="absolute -top-3 right-6 px-3 py-1 bg-[#ff3b30] rounded-full"
+        aria-label={`Key result: ${highlight}`}
+      >
         <span className="text-xs font-bold text-white">{highlight}</span>
       </div>
 
       {/* Quote icon */}
-      <div className="mb-4">
+      <div className="mb-4" aria-hidden="true">
         <Quote className="w-8 h-8 text-[#ff3b30]/30" />
       </div>
 
       {/* Quote text */}
-      <p className="text-gray-300 text-lg leading-relaxed mb-6">"{quote}"</p>
+      <blockquote className="text-gray-300 text-lg leading-relaxed mb-6">
+        "{quote}"
+      </blockquote>
 
       {/* Attribution */}
-      <div className="flex items-center gap-4">
+      <footer className="flex items-center gap-4">
         {/* Avatar placeholder */}
-        <div className="w-12 h-12 rounded-full bg-gradient-to-br from-[#ff3b30] to-[#ff6b5b] flex items-center justify-center">
+        <div
+          className="w-12 h-12 rounded-full bg-gradient-to-br from-[#ff3b30] to-[#ff6b5b] flex items-center justify-center"
+          aria-hidden="true"
+        >
           <span className="text-white font-bold text-sm">
             {name ? name[0] : company[0]}
           </span>
         </div>
         <div>
-          <div className="font-semibold text-white">
+          <cite className="font-semibold text-white not-italic">
             {name || "Anonymous"}
-          </div>
+          </cite>
           <div className="text-sm text-gray-500">
             {role} • {company}
           </div>
         </div>
-      </div>
-    </div>
+      </footer>
+    </article>
   );
 }

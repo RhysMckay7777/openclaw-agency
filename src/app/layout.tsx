@@ -5,6 +5,8 @@ import "./globals.css";
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
+  display: "swap", // Optimizes CLS
+  preload: true,
 });
 
 export const metadata: Metadata = {
@@ -21,6 +23,9 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "OpenClaw Agency" }],
   creator: "OpenClaw Agency",
+  alternates: {
+    canonical: "https://www.openclawagency.ai",
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
@@ -31,6 +36,7 @@ export const metadata: Metadata = {
       "OpenClaw Agency builds AI agents and OpenClaw automations that replace manual work, cut costs, and scale your business with 24/7 execution.",
     images: [
       {
+        // TODO: Replace with actual OG image
         url: "/og-image.png",
         width: 1200,
         height: 630,
@@ -66,10 +72,24 @@ export default function RootLayout({
   return (
     <html lang="en" className="scroll-smooth">
       <head>
+        {/* Preload critical font */}
+        <link
+          rel="preload"
+          href="https://fonts.gstatic.com/s/inter/v13/UcCO3FwrK3iLTeHuS_fvQtMwCp50KnMw2boKoduKmMEVuLyfAZ9hiJ-Ek-_EeA.woff2"
+          as="font"
+          type="font/woff2"
+          crossOrigin="anonymous"
+        />
         <OrganizationSchema />
         <FAQSchema />
       </head>
       <body className={`${inter.variable} font-sans antialiased`}>
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-[#ff3b30] focus:text-white focus:rounded-lg"
+        >
+          Skip to main content
+        </a>
         {children}
       </body>
     </html>
@@ -82,15 +102,25 @@ function OrganizationSchema() {
     "@type": "Organization",
     name: "OpenClaw Agency",
     url: "https://www.openclawagency.ai",
-    logo: "https://www.openclawagency.ai/logo.png",
+    // TODO: Replace with actual logo URL
+    logo: "https://www.openclawagency.ai/openclaw-logo.svg",
     description:
       "OpenClaw Agency builds AI agents and OpenClaw automations that replace manual work, cut costs, and scale your business with 24/7 execution.",
     sameAs: ["https://www.linkedin.com/company/openclawai"],
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "sales",
+      email: "hello@openclawagency.ai",
       availableLanguage: "English",
     },
+    foundingDate: "2024",
+    knowsAbout: [
+      "AI Automation",
+      "Business Process Automation",
+      "AI Agents",
+      "OpenClaw",
+      "Data Workflows",
+    ],
   };
 
   return (
