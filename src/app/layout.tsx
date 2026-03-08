@@ -81,6 +81,30 @@ export default function RootLayout({
           type="font/woff2"
           crossOrigin="anonymous"
         />
+        {/* Meta Pixel Base Code */}
+        <Script id="meta-pixel" strategy="afterInteractive">
+          {`
+            !function(f,b,e,v,n,t,s)
+            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+            n.queue=[];t=b.createElement(e);t.async=!0;
+            t.src=v;s=b.getElementsByTagName(e)[0];
+            s.parentNode.insertBefore(t,s)}(window, document,'script',
+            'https://connect.facebook.net/en_US/fbevents.js');
+            fbq('init', '1493876016085995');
+            fbq('track', 'PageView');
+          `}
+        </Script>
+        <noscript>
+          <img
+            height="1"
+            width="1"
+            style={{ display: 'none' }}
+            src="https://www.facebook.com/tr?id=1493876016085995&ev=PageView&noscript=1"
+            alt=""
+          />
+        </noscript>
         <OrganizationSchema />
         <ServiceSchema />
         <FAQSchema />
@@ -104,8 +128,10 @@ export default function RootLayout({
                     content_name: 'Strategy Call Booked',
                     content_category: 'OpenClaw Agency'
                   });
+                  console.log('OpenClaw Calendly booking tracked - Lead event fired');
+                } else {
+                  console.log('OpenClaw Calendly booking detected but fbq not found');
                 }
-                console.log('Calendly booking tracked');
               }
             });
           `}
