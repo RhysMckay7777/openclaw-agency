@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 const inter = Inter({
@@ -92,6 +93,23 @@ export default function RootLayout({
           Skip to main content
         </a>
         {children}
+        
+        {/* Calendly Booking Tracker - fires Meta Lead event on booking */}
+        <Script id="calendly-tracking" strategy="afterInteractive">
+          {`
+            window.addEventListener('message', function(e) {
+              if (e.origin === 'https://calendly.com' && e.data && e.data.event === 'calendly.event_scheduled') {
+                if (typeof fbq !== 'undefined') {
+                  fbq('track', 'Lead', {
+                    content_name: 'Strategy Call Booked',
+                    content_category: 'OpenClaw Agency'
+                  });
+                }
+                console.log('Calendly booking tracked');
+              }
+            });
+          `}
+        </Script>
       </body>
     </html>
   );
